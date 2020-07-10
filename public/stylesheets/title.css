@@ -2,6 +2,24 @@
 	box-sizing: border-box;
 }
 
-body{
-	background:pink;
+.container{
+	max-width: 900px;
+	width:100%;
+	margin:0 auto;
+	border:1px solid black;
+
+}
+
+.title-ratings{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: red
+}
+
+.ratings{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: green;
 }
