@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title><%=parseId.Title%></title>
+	<script src="https://kit.fontawesome.com/86ef774720.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<header>
@@ -12,6 +14,21 @@
 		<div class="movie-details">
 			<div class="title-ratings">
 				<h2><%=parseId.Title%></h2>
+
+				<div class="ratings">
+					<div class="site-rating">
+						<i class="fab fa-imdb"></i>
+						<p><%=parseId.Ratings[0].Value%></p>
+					</div>
+					<div class="site-rating">
+						<i class="fas fa-pepper-hot"></i>
+						<p><%=parseId.Ratings[1].Value%></p>
+					</div>
+					<div class="site-rating">
+						<i class="fab fa-megaport"></i>
+						<p><%=parseId.Ratings[2].Value%></p>
+					</div>
+				</div>
 			</div>
 
 			<!-- PG |||R -->
