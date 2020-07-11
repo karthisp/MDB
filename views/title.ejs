@@ -35,6 +35,7 @@
 
 		.pg-length-genre-release{
 			display:flex;
+			justify-content: space-between;
 		}
 
 		ul{
@@ -50,6 +51,25 @@
 		
 		.poster-cast-crew{
 			display:flex;
+			align-items: center;
+		}
+
+		.poster{
+			max-width:320px;
+			width:100%;
+			height: 20px;
+		}
+
+		img{
+			max-width:300px;
+			width:300px;
+			height:auto;
+		}
+
+		.cast-crew{
+			display: flex;
+			flex-direction: column;
+			padding-left: 5px;
 		}
 	</style>
 </head>
@@ -95,7 +115,7 @@
 					<img src="<%=parseId.Poster%>">
 				</div>
 				
-				<div>
+				<div class="cast-crew">
 					<h3>Director: <span><%=parseId.Director%></span></h3>
 					<h3>Writer(s): <span><%=parseId.Writer%></span></h3>
 					<h3>Cast: <span><%=parseId.Actors%></span></h3>
