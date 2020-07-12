@@ -28,7 +28,8 @@ app.get('/title/:movie_title', function(req, res){
 			let parseId = JSON.parse(body);
 			res.render('title', {parseId:parseId});
 		} else {
-			console.log(error);
+			// console.log(error);
+			console.log(response);
 		}
 	});
 
