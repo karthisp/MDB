@@ -35,9 +35,9 @@ app.get('/title/:movie_title', function(req, res){
 
 });
 
-
 app.get('/title/:movie_title/comments/new', function(req, res){
-	res.send("Balle Balle Comments kartu")
+	let film = req.params.movie_title;
+	res.render('reviews/new', {film:film})
 });
 
 
