@@ -1,6 +1,10 @@
 const express = require("express");
-const request = require("request");	    	
+const request = require("request");
+const bodyParser = require("body-parser")    	
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.urlencoded());
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -38,6 +42,13 @@ app.get('/title/:movie_title', function(req, res){
 app.get('/title/:movie_title/comments/new', function(req, res){
 	let film = req.params.movie_title;
 	res.render('reviews/new', {film:film})
+});
+
+
+app.post('/title/:movie_title/comments', bodyParser,  function(req, res){
+	let film = "req.params.movie_title";
+		console.log(req.body);
+	// res.redirect('/title',)
 });
 
 
