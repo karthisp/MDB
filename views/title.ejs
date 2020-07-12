@@ -15,8 +15,11 @@
 			max-width: 900px;
 			width:100%;
 			margin:0 auto;
-			border:1px solid black;
 
+		}
+
+		.movie-details{
+			border:1px solid black;
 		}
 
 		.title-ratings{
@@ -51,7 +54,6 @@
 		
 		.poster-cast-crew{
 			display:flex;
-			/*align-items: center;*/
 		}
 
 		.poster{
@@ -72,6 +74,12 @@
 			flex-direction: column;
 			padding-left: 5px;
 			line-height: 200%;
+		}
+
+		.reviews{
+			display:flex;
+			align-items: center;
+			justify-content: space-between;
 		}
 	</style>
 </head>
@@ -126,18 +134,12 @@
 					</ul>
 				</div>
 			</div>
+		</div>
 
-			<!-- Plot -->
-	<!-- 		<div>
-				<h2>Plot</h2>
-				<p><%=parseId.Plot%></p>
-			</div> -->
-
-<!-- 		</div>
-
-		Comments section
-		<div> -->
-			
+		<!-- Comments section -->
+		<div class="reviews">
+			<h2>Reviews</h2>
+			<button><a href="http://www.google.com" target="_blank">Add Review</a></button>
 		</div>
 	</div>
 
