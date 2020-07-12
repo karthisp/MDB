@@ -35,6 +35,12 @@ app.get('/title/:movie_title', function(req, res){
 
 });
 
+
+app.get('/title/:movie_title/comments/new', function(req, res){
+	res.send("Balle Balle Comments kartu")
+});
+
+
 app.listen(3000, function(){
 	console.log("M ready");
 });
