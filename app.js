@@ -15,20 +15,23 @@ var connection = mysql.createConnection({
 	host : "localhost",
 	user : "newuser",
 	password : "K@rthik96",
-	database : "Movies_DB"
-	// port:"3000",
-	// socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
-	// multipleStatements: true,
+	database : "Movies_DB",
+	port:"3000",
+	socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
+	multipleStatements: true
 });
+
+// connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock
 
 connection.connect(function(error){
 	if(error){
-		console.log(`error connecting to DB`);
+		console.log(`error connecting to DB ${error.message}`);
 		return;
 	} else{
 		console.log(`Connection successfull`);
 	}
 });
+
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
