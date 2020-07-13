@@ -5,11 +5,9 @@
 </head>
 <body>
 	<form action="/title/:movie_title/comments" method="POST">
-		<label>Name: <input type="text" name="user[name]" placeholder="what's your name"></label>
+		<label>Name: <input type="text" name="name" placeholder="what's your name"></label>
 		<div>
-			<textarea rows="4" cols="50" name="user[review]">
-			
-			</textarea>
+			<textarea rows="4" cols="50" name="review"></textarea>
 		</div>
 		<input type="submit" name="submit" value="Submit">
 	</form>

@@ -3,8 +3,8 @@ const request = require("request");
 const bodyParser = require("body-parser")    	
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.urlencoded());
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var loginCredentions = {};
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -41,13 +41,16 @@ app.get('/title/:movie_title', function(req, res){
 
 app.get('/title/:movie_title/comments/new', function(req, res){
 	let film = req.params.movie_title;
-	res.render('reviews/new', {film:film})
+	res.render('reviews/new', {film:film});
 });
 
 
-app.post('/title/:movie_title/comments',  function(req, res){
+app.post('/title/:movie_title/comments', urlencodedParser, function(req, res){
 	let movie = "req.params.movie_title";
-		console.log(req.body);
+		loginCredentions.name = req.body.name;
+		loginCredentions.review = req.body.review
+
+		console.log(loginCredentions);
 });
 
 
