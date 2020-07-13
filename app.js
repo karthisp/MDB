@@ -45,10 +45,9 @@ app.get('/title/:movie_title/comments/new', function(req, res){
 });
 
 
-app.post('/title/:movie_title/comments', bodyParser,  function(req, res){
-	let film = "req.params.movie_title";
+app.post('/title/:movie_title/comments',  function(req, res){
+	let movie = "req.params.movie_title";
 		console.log(req.body);
-	// res.redirect('/title',)
 });
 
 
