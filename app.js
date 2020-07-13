@@ -30,7 +30,7 @@ app.get('/title/:movie_title', function(req, res){
 	request('http://www.omdbapi.com/?apikey=thewdb&t='+film, function(error, response, body){
 		if(!error && response.statusCode == 200){
 			let parseId = JSON.parse(body);
-			res.render('title', {parseId:parseId});
+			res.render('title', {parseId:parseId, loginCredentions:loginCredentions});
 		} else {
 			console.log(error);
 			console.log(response.statusCode);
@@ -48,9 +48,10 @@ app.get('/title/:movie_title/comments/new', function(req, res){
 app.post('/title/:movie_title/comments', urlencodedParser, function(req, res){
 	let movie = "req.params.movie_title";
 		loginCredentions.name = req.body.name;
-		loginCredentions.review = req.body.review
+		loginCredentions.review = req.body.review;
+		console.log(loginCredentions)
 
-		console.log(loginCredentions);
+		res.redirect('/title/movie');
 });
 
 
