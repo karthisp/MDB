@@ -25,27 +25,26 @@ var connection = mysql.createConnection({
 
 connection.connect(function(error){
 	if(error){
-		console.log(`error connecting to DB ${error.message}`);
-		return;
+		console.log(`error connecting to DB ${error}`);
 	} else{
 		console.log(`Connection successfull`);
 	}
 });
+
+	connection.query('SELECT * FROM users', function(error, results, fields){
+		if(!error){
+			console.log(error)
+		} else{
+			console.log(results);
+		}
+	});
 
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
-	connection.query('SELECT * FROM users', function(error, results, fields){
-		if(!error){
-			console.log(error)
-		} else{
-			console.log(results[0]);
-			connection.end()
-			res.render("home");
-		}
-	});
+	res.render("home");
 });
 
 app.get('/result', function(req, res){
