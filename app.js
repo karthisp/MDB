@@ -15,36 +15,33 @@ var connection = mysql.createConnection({
 	host : "localhost",
 	user : "newuser",
 	password : "K@rthik96",
-	database : "Movies_DB",
-	port:"3000",
-	socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
-	multipleStatements: true
+	database : "Movies_DB"
 });
 
 // connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock
 
 connection.connect(function(error){
 	if(error){
-		console.log(`error connecting to DB ${error}`);
+		console.log(error.stack);
 	} else{
 		console.log(`Connection successfull`);
 	}
 });
-
-	connection.query('SELECT * FROM users', function(error, results, fields){
-		if(!error){
-			console.log(error)
-		} else{
-			console.log(results);
-		}
-	});
 
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
-	res.render("home");
+	connection.query('SELECT * FROM users', function(error, results){
+		if(!error){
+			console.log(results[0].user_id);
+		} else{
+			console.log(error);
+		}
+		connection.end();
+		res.render("home");
+	});	
 });
 
 app.get('/result', function(req, res){
