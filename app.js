@@ -33,15 +33,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
-	connection.query('SELECT * FROM users', function(error, results){
-		if(!error){
-			console.log(results[0].user_id);
-		} else{
-			console.log(error);
-		}
-		connection.end();
-		res.render("home");
-	});	
+	res.render("home");
 });
 
 app.get('/result', function(req, res){
