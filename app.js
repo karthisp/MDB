@@ -3,23 +3,27 @@ const express = require("express");
 const request = require("request");
 const bodyParser = require("body-parser");
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 const app = express();
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(session({
+	secret:"keep_calm",
+	resave: false,
+	 saveUninitialized: true
+}));
 
 /*==========================
  	Mysql Connection
 ==========================*/
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
 	host : "localhost",
 	user : "newuser",
 	password : "K@rthik96",
 	database : "Movies_DB"
 });
-
-// connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock
 
 connection.connect(function(error){
 	if(error){
@@ -67,15 +71,15 @@ app.get('/title/:movie_title', function(req, res){
 	comments section
 *********************/
 
-app.get('/title/:movie_title/comments/new', function(req, res){
+app.get('/title/:movie_title/comments/new', restrict, function(req, res){
+	let user = req.session.user;
 	let film = req.params.movie_title;
-	res.render('reviews/new', {film:film});
+	res.render('reviews/new', {film:film, user:user});
 });
 
 
 app.post('/title/:movie_title/comments', urlencodedParser, function(req, res){
 	let movie = "req.params.movie_title";
-
 		res.redirect('/title/movie');
 });
 
@@ -84,7 +88,7 @@ app.post('/title/:movie_title/comments', urlencodedParser, function(req, res){
 **********************/
 
 app.get('/sign_up', function(req, res){
-	res.render('sign_up.ejs');
+	res.render('auth/sign_up');
 });
 
 app.post('/sign_up', urlencodedParser, function(req, res){
@@ -111,7 +115,7 @@ app.post('/sign_up', urlencodedParser, function(req, res){
 Login get and set
 **************************/
 app.get('/login', function(req, res){
-	res.render("login.ejs");
+	res.render("auth/login");
 })
 
 app.post('/login', urlencodedParser, function(req, res){
@@ -120,9 +124,22 @@ app.post('/login', urlencodedParser, function(req, res){
 			console.log("login sql error "+error);
 		} else{
 			if(bcrypt.compare(req.body.password, result[0].user_password)){
+				req.session.user = req.body.username;
 				res.redirect('/');
-				console.log(req.session);
 			}
+		}
+	})
+});
+
+/**************
+logout
+***************/
+app.get('/logout', function(req, res, next){
+	req.session.destroy(function(error){
+		if(error){
+			console.log(error);
+		} else{
+			res.redirect("/");
 		}
 	})
 })
@@ -131,3 +148,15 @@ app.post('/login', urlencodedParser, function(req, res){
 app.listen(3000, function(){
 	console.log("M ready");
 });
+
+/*****************
+access restriction
+******************/
+function restrict(req, res, next){
+	if(req.session.user){
+		next();
+	} else{
+		console.log("m not allowing");
+		res.redirect('/login')
+	}
+}
