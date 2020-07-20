@@ -1,9 +1,19 @@
+/*Global elements*/
 *{
 	box-sizing: border-box;
-}	
+}
 
-hr{
-	color: black;
+ul{
+	display:flex;
+}
+
+li{
+	list-style-type: none;
+}
+
+a{
+	text-decoration: none;
+	color:black;
 }
 
 .container{
