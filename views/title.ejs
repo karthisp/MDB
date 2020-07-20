@@ -23,53 +23,41 @@
 	</header>
 
 	<div class="container">
-		<div class="movie-details">
+		<div class="frame_1">
+			<div class="poster">
+				<img src="<%=parseId.Poster%>">
+			</div>
+
 			<div class="title-ratings">
 				<h2><%=parseId.Title%></h2>
 
-				<div class="ratings">
-					<div class="site-rating">
-						<i class="fab fa-imdb"></i>
-						<p><%=parseId.Ratings[0].Value%></p>
-					</div>
-					<div class="site-rating">
-						<i class="fas fa-pepper-hot"></i>
-						<p><%=parseId.Ratings[1].Value%></p>
-					</div>
-					<div class="site-rating">
-						<i class="fab fa-megaport"></i>
-						<p><%=parseId.Ratings[2].Value%></p>
-					</div>
-				</div>
-			</div>
+				<p><%=parseId.Rated%></p>
 
-			<!-- PG |||R -->
-			<div class="pg-length-genre-release">
-				<ul>
-					<li><%=parseId.Rated%></li>|
-					<li><%=parseId.Runtime%></li>|
-					<li><%=parseId.Genre%></li>|
-					<li><%=parseId.Released%></li>
-				</ul>
-			</div>
+				<div class="audience_ratings">
 
-			<!--Poster and other details -->
-			<div class="poster-cast-crew">
-				<div class="poster">
-					<img src="<%=parseId.Poster%>">
-				</div>
+					<div class="imdb">
+						<div class="logo">
+							<img src="https://ia.media-imdb.com/images/M/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@._V1_.png">
+						</div>
+						<p class="ratings"><%=parseId.Ratings[0].Value%></p>
+					</div>
 
-				<div class="cast-crew">
-					<ul class="cast-crew">
-						<li><strong>Director: </strong><span><%=parseId.Director%></span></li>
-						<li><strong>Writer(s): </strong><span><%=parseId.Writer%></span></li>
-						<li><strong>Cast: </strong><span><%=parseId.Actors%></span></li>
-						<li><strong>Plot: </strong><%=parseId.Plot%></li>
-					</ul>
+					<div class="rotten_tomatoes">
+						<div class="logo">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Rotten_Tomatoes_logo.svg">
+						</div>
+						<p class="ratings"><%=parseId.Ratings[1].Value%></p>
+					</div>
+
+					<div class="metacritic">
+						<div class="logo">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Metacritic_logo.svg">
+						</div>
+						<p class="ratings"><%=parseId.Ratings[2].Value%></p>
+					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- Comments section -->
 		<div class="reviews">
 			<h2>Reviews</h2>
