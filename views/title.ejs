@@ -29,15 +29,14 @@
 			</div>
 
 			<div class="title-ratings">
-				<h2><%=parseId.Title%></h2>
-
-				<p><%=parseId.Rated%></p>
+				<div class="line_through"></div>
+				<h2 class="title"><%=parseId.Title%></h2>
 
 				<div class="audience_ratings">
 
 					<div class="imdb">
 						<div class="logo">
-							<img src="https://ia.media-imdb.com/images/M/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@._V1_.png">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg">
 						</div>
 						<p class="ratings"><%=parseId.Ratings[0].Value%></p>
 					</div>
@@ -55,6 +54,7 @@
 						</div>
 						<p class="ratings"><%=parseId.Ratings[2].Value%></p>
 					</div>
+
 				</div>
 			</div>
 		</div>

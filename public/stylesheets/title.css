@@ -2,8 +2,12 @@
 	box-sizing: border-box;
 }	
 
+hr{
+	color: black;
+}
+
 .container{
-	max-width: 900px;
+	max-width: 800px;
 	width:100%;
 	margin:0 auto;
 	border:1px solid black;
@@ -29,25 +33,75 @@ ul{
 .frame_1{
 	margin-top:60px;
 	display: flex;
+	justify-content: center;
 }
 
-.poster{
+.poster img{
+	max-width: 250px;
+	border:4px solid black;
 }
 
 .title-ratings{
+	max-width: 600px;
+	width:100%;
+	background-color: #eee;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: flex-start;
 	align-items: center;
+	margin-bottom: 0px;
+	border: 1px solid green;
+	height:auto;
+	margin-left: 10px;
+
 }
 
-.logo img{
-	width:5vw;
+.line_through{
+	background-color: black;
+	width:100%;
+	height:4px;
+	position:relative;
+	max-width: 100%;
+	top:25px;
+}
+
+
+.title-ratings .title{
+	background:#eee; 
+	position:relative;
+	bottom:7px;
+	font-size: 20px;
+	padding:2px;
 }
 
 .audience_ratings{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+/*.logo{
+	max-width:20px;
+}
+*/
+.logo img{
+	max-width:200px;
+	width:100%;
+	height:25px;
+}
+
+.imdb, .rotten_tomatoes, .metacritic{
+	display: flex;
+	flex-direction: column;
 	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding:20px;
+}
+
+.ratings{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*padding-left:100px;*/
 }
