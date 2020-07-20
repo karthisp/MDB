@@ -1,25 +1,89 @@
-*{
-	box-sizing: border-box;
-}
+		*{
+			box-sizing: border-box;
+		}
 
-.container{
-	max-width: 900px;
-	width:100%;
-	margin:0 auto;
-	border:1px solid black;
+		.container{
+			max-width: 900px;
+			width:100%;
+			margin:0 auto;
 
-}
+		}
 
-.title-ratings{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: red
-}
+		header{
+			display:flex;
+			justify-content: space-around;
+			align-items: center;
+			background-color: lightblue;
+			position:fixed;
+			max-width: 100%;
+			width:100%;
+			top:0;
+			left:0px;
+		}
 
-.ratings{
-	display:flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: green;
-}
+		.movie-details{
+			border:1px solid black;
+			margin-top:60px;
+		}
+
+		.title-ratings{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: red
+		}
+
+		.ratings{
+			display:flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: green;
+		}
+
+		.pg-length-genre-release{
+			display:flex;
+			justify-content: space-between;
+		}
+
+		ul{
+			display: flex;
+			padding:0;
+		}
+
+		li{
+			list-style: none;
+			padding: 0 5px;
+
+		}
+		
+		.poster-cast-crew{
+			display:flex;
+		}
+
+		.poster{
+			max-width:200px;
+			width:100%;
+			height: auto;
+			border:1px solid green;
+		}
+
+		img{
+			max-width:200px;
+			width:100%;
+			height:auto;
+		}
+
+		.cast-crew{
+			display: flex;
+			flex-direction: column;
+			padding-left: 5px;
+			line-height: 200%;
+		}
+
+		.reviews{
+			display:flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+	

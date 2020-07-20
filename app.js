@@ -6,7 +6,8 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 
 const app = express();
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
 	secret:"keep_calm",
@@ -78,7 +79,7 @@ app.get('/title/:movie_title/comments/new', restrict, function(req, res){
 });
 
 
-app.post('/title/:movie_title/comments', urlencodedParser, function(req, res){
+app.post('/title/:movie_title/comments', function(req, res){
 	let movie = "req.params.movie_title";
 		res.redirect('/title/movie');
 });
@@ -91,7 +92,7 @@ app.get('/sign_up', function(req, res){
 	res.render('auth/sign_up');
 });
 
-app.post('/sign_up', urlencodedParser, function(req, res){
+app.post('/sign_up', function(req, res){
 	connection.query('SELECT * FROM users WHERE username=?', req.body.username, function(error, result){
 		if(result[0].username === req.body.username){
 			console.log("Mama a person with this username already exists mama");
@@ -118,7 +119,7 @@ app.get('/login', function(req, res){
 	res.render("auth/login");
 })
 
-app.post('/login', urlencodedParser, function(req, res){
+app.post('/login', function(req, res){
 	connection.query("SELECT * FROM users WHERE username=?", req.body.username, function(error, result){
 		if(error){
 			console.log("login sql error "+error);
