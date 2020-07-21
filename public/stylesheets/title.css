@@ -129,12 +129,34 @@ nav ul{
 }
 
 .more_info ul{
-	max-width: 350px;
+	max-width: 400px;
 	width:100%;
 	margin:0 auto;
 	border:1px solid red;
+	display: flex;
+	flex-direction: column;
 }
 
-.more_info .other_details span{
-	padding-left:10px;
+span{
+	padding-left: 40px;
+}
+
+.more_info .other_info{
+	display:flex;
+	align-items: center;
+}
+
+.more_info .other_info .catagory{
+	border:0.5px solid red;
+	max-width:250px;
+}
+
+.other_info p{
+	margin-top:0;
+	margin-bottom:0px;
+	font-size:14px;
+}
+
+.more_info .result{
+	padding-left:15px;
 }
