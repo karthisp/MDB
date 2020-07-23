@@ -40,6 +40,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
+	console.log(req.session);
 	res.render("home");
 });
 
@@ -57,13 +58,15 @@ app.get('/result', function(req, res){
 
 app.get('/title/:movie_title', function(req, res){
 	let film = req.params.movie_title;
+	let user = req.session.user;
+	req.session.path = '/title/'+film;
 	request('http://www.omdbapi.com/?apikey=thewdb&t='+film, function(error, response, body){
 		if(!error && response.statusCode == 200){
 			let parseId = JSON.parse(body);
 			connection.query("SELECT * FROM reviews WHERE movie_title=?", film, function(error, result){
 				if(!error){
 					let reviews = result;
-					res.render('title', {parseId:parseId, reviews:reviews});
+					res.render('title', {parseId:parseId, reviews:reviews, user:user});
 				} else{
 					console.log(error);
 				}
@@ -92,7 +95,9 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 	let movie = req.params.movie_title;
 	let review = {user:req.session.user, review:req.body.review, movie_title:movie}
 	connection.query("INSERT INTO reviews SET ?", review, function(error, result){
-		console.log(result);
+		if(error){
+			console.log("comments post route SQL error "+error);
+		}
 	});
 		res.redirect('/title/'+movie);
 });
@@ -101,11 +106,11 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 	signup get and post
 **********************/
 
-app.get('/sign_up', function(req, res){
+app.get('/sign_up', loginSignupPageRestrict, function(req, res){
 	res.render('auth/sign_up');
 });
 
-app.post('/sign_up', function(req, res){
+app.post('/sign_up', loginSignupPageRestrict, function(req, res){
 
 	connection.query('SELECT username FROM users WHERE username=?', req.body.username, function(error, result){
 		if(result.length > 0 && result[0].username === req.body.username){
@@ -131,18 +136,18 @@ app.post('/sign_up', function(req, res){
 /*************************
 Login get and set
 **************************/
-app.get('/login', function(req, res){
+app.get('/login', loginSignupPageRestrict, function(req, res){
 	res.render("auth/login");
 })
 
-app.post('/login', function(req, res){
+app.post('/login', loginSignupPageRestrict, function(req, res){
 	connection.query("SELECT * FROM users WHERE username=?", req.body.username, function(error, result){
 		if(error){
 			console.log("login sql error "+error);
 		} else{
 			if(bcrypt.compare(req.body.password, result[0].user_password)){
 				req.session.user = req.body.username;
-				res.redirect('/');
+				res.redirect(req.session.path);
 			}
 		}
 	})
@@ -175,5 +180,13 @@ function restrict(req, res, next){
 	} else{
 		console.log("m not allowing");
 		res.redirect('/login');
+	}
+}
+
+function loginSignupPageRestrict(req, res, next){
+	if(!req.session.user){
+		next();
+	} else{
+		res.redirect('/')
 	}
 }

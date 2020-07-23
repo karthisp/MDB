@@ -15,9 +15,12 @@
 
 		<nav>
 			<ul>
-				<li><i class="fas fa-sign-in-alt"></i> <a href="/login"> Login </a></li>
+				<%if(user){%>
 				<li><i class="fas fa-sign-out-alt"></i> <a href="/logout"> Logout </a></li>
+				<%} else {%>
+				<li><i class="fas fa-sign-in-alt"></i> <a href="/login"> Login </a></li>
 				<li><i class="fas fa-user-plus"></i> <a href="/sign_up"> SignUp</a></li>
+				<%}%>
 			</ul>
 		</nav>
 	</header>
@@ -54,8 +57,12 @@
 						</div>
 						<p class="ratings"><%=parseId.Ratings[2].Value%></p>
 					</div>
-
 				</div>
+
+				<div class="plot">
+					<p>Plot</p>
+					<p><p class="plot"><%=parseId.Plot%></p></p>
+					</div>
 			</div>
 		</div>
 
@@ -66,8 +73,6 @@
 			</div>
 
 			<div class="more_info"> 
-				<p class="plot"><%=parseId.Plot%></p>
-
 				<div class="other_info"> 
 					<p class="catagory">Raings:</p>
 					<p class="result"><%=parseId.Rated%></p>
@@ -118,7 +123,7 @@
 		<div class="reviews">
 			<div class="heading_comment_button">
 				<p>Reviews</p>
-				<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/comments/new" target="_blank">Add Review</a></button>
+				<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/comments/new">Add Review</a></button>
 			</div>
 
 			<div class="user_review">
