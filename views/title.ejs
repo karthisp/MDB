@@ -116,8 +116,18 @@
 		</div>
 		<!-- Comments section -->
 		<div class="reviews">
-			<h2>Reviews</h2>
-			<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/comments/new" target="_blank">Add Review</a></button>
+			<div class="heading_comment_button">
+				<p>Reviews</p>
+				<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/comments/new" target="_blank">Add Review</a></button>
+			</div>
+
+			<div class="user_review">
+				<% for(var i=0; i < reviews.length; i++){%>
+				<h3><%=reviews[i].user%></h3>
+				<p><%=reviews[i].review%></p>
+				<hr>
+				<%}%>
+			</div>
 		</div>
 	</div>
 

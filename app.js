@@ -60,7 +60,15 @@ app.get('/title/:movie_title', function(req, res){
 	request('http://www.omdbapi.com/?apikey=thewdb&t='+film, function(error, response, body){
 		if(!error && response.statusCode == 200){
 			let parseId = JSON.parse(body);
-			res.render('title', {parseId:parseId});
+			connection.query("SELECT * FROM reviews WHERE movie_title=?", film, function(error, result){
+				if(!error){
+					let reviews = result;
+					res.render('title', {parseId:parseId, reviews:reviews});
+				} else{
+					console.log(error);
+				}
+			})
+			
 		} else {
 			console.log(error);
 			console.log(response.statusCode);
@@ -80,9 +88,13 @@ app.get('/title/:movie_title/comments/new', restrict, function(req, res){
 });
 
 
-app.post('/title/:movie_title/comments', function(req, res){
-	let movie = "req.params.movie_title";
-		res.redirect('/title/movie');
+app.post('/title/:movie_title/comments', restrict, function(req, res){
+	let movie = req.params.movie_title;
+	let review = {user:req.session.user, review:req.body.review, movie_title:movie}
+	connection.query("INSERT INTO reviews SET ?", review, function(error, result){
+		console.log(result);
+	});
+		res.redirect('/title/'+movie);
 });
 
 /*********************
@@ -162,6 +174,6 @@ function restrict(req, res, next){
 		next();
 	} else{
 		console.log("m not allowing");
-		res.redirect('/login')
+		res.redirect('/login');
 	}
 }

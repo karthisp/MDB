@@ -4,7 +4,7 @@
 	<title>Review: <%=film.split('_').join(' ')%></title>
 </head>
 <body>
-	<form action="/title/:movie_title/comments" method="POST">
+	<form action="/title/<%=film%>/comments" method="POST">
 		<h2>Hi <%=user%></h2>
 		<div>
 			<textarea rows="4" cols="50" name="review"></textarea>

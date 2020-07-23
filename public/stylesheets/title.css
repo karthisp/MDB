@@ -163,3 +163,19 @@ span{
 	padding-left:15px;
 	word-wrap:break-word;
 }
+
+.reviews{
+	margin-top:20px;
+}
+
+.heading_comment_button{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: lightblue;
+}
+
+.reviews .user_review{
+	padding:10px;
+	background-color: #eee;
+}
