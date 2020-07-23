@@ -8,6 +8,7 @@ const session = require('express-session');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(session({
 	secret:"keep_calm",
@@ -93,23 +94,32 @@ app.get('/sign_up', function(req, res){
 });
 
 app.post('/sign_up', function(req, res){
-	connection.query('SELECT * FROM users WHERE username=?', req.body.username, function(error, result){
-		if(result[0].username === req.body.username){
-			console.log("Mama a person with this username already exists mama");
-			res.redirect("/sign_up");
+
+	connection.query('SELECT username FROM users WHERE username=?', req.body.username, function(error, result){
+		// if(result[0].username === req.body.username){
+		// 	console.log("Mama a person with this username already exists mama");
+		// 	res.redirect("/sign_up");
+		// 	return;
+		// } 
+		// else{
+		// 	bcrypt.hash(req.body.password, 10, function(err, hash){
+		// 		let user = {username:req.body.username, user_email:req.body.email, user_password:hash}
+		// 		connection.query("INSERT INTO users SET ?", user, function(sqlerror, result){
+		// 			if(sqlerror){
+		// 				console.log("sql signup error "+sqlerror);
+		// 				return;
+		// 			}
+		// 			res.redirect('/login');
+		// 		})
+		// 	})
+		// }
+
+		if(result === [] || result[0].username !== req.body.username){
+			console.log("I will consider "+ req.body.username)
 		} else{
-			bcrypt.hash(req.body.password, 10, function(err, hash){
-				let user = {username:req.body.username, user_email:req.body.email, user_password:hash}
-				connection.query("INSERT INTO users SET ?", user, function(sqlerror, result){
-					if(sqlerror){
-						console.log("sql signup error "+sqlerror);
-						return;
-					}
-					res.redirect('/login');
-				})
-			})
+			console.log("Sorry boss cant let in");
 		}
-	})
+	});
 });
 
 /*************************
