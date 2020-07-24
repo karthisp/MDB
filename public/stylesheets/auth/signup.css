@@ -38,9 +38,9 @@ h1{
 	justify-content: space-around;
 	max-width: 500px;
 	width:100%;
-	padding:1em;
+	padding:10px 10px 5px 10px;
 	background-color: rgba(0, 0, 0, 1);
-	border: 5px solid yellow;
+	border: 5px solid black;
 	text-align: center;
 	vertical-align: middle;
 }
