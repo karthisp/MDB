@@ -1,0 +1,24 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	background-color: lightgreen;
+}
+
+.container{
+	border:1px solid black;
+	max-width: 1000px;
+	width:100%;
+	margin:0 auto;
+	display:flex;
+	flex-direction: column;
+}
+
+.form{
+	display:flex;
+	flex-direction: column;
+	max-width: 600px;
+	width:100%;
+
+}

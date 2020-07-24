@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Review: <%=film.split('_').join(' ')%></title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/reviews/reviews.css">
 </head>
 <body>
-	<form action="/title/<%=film%>/comments" method="POST">
-		<h2>Hi <%=user%></h2>
-		<div>
-			<textarea rows="4" cols="50" name="review"></textarea>
-		</div>
-		<input type="submit" name="submit" value="Submit">
-	</form>
+	<div class="container">
+		<form action="/title/<%=film%>/comments" method="POST" class="form">
+			<h2>Hi <%=user%></h2>
+			<div>
+				<textarea rows="4" cols="50" name="review"></textarea>
+			</div>
+			<input type="submit" name="submit" value="Submit">
+		</form>
+	</div>
 </body>
 </html>
