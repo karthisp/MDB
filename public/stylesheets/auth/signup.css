@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap";
+
 *{
 	box-sizing: border-box;
 }
@@ -17,6 +19,7 @@ body{
 	margin:0px;
 	padding: 0px;
 	height:100%;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .container{
@@ -42,7 +45,8 @@ h1{
 	background-color: rgba(0, 0, 0, 1);
 	border: 5px solid black;
 	text-align: center;
-	vertical-align: middle;
+	border-radius: 10px;
+
 }
 
 input[type="text"], input[type="password"], input[type="email"], button{
