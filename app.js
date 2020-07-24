@@ -40,7 +40,6 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
-	console.log(req.session);
 	res.render("home");
 });
 
