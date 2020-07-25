@@ -7,10 +7,10 @@
 </head>
 <body>
 	<div class="container">
+		<h1>What do you think about <%=film.split('_').join(' ')%></h1>
 		<form action="/title/<%=film%>/comments" method="POST" class="form">
-			<h2>Hi <%=user%></h2>
-			<div>
-				<textarea rows="4" cols="50" name="review"></textarea>
+			<div class="review">
+				<textarea name="review" required></textarea>
 			</div>
 			<input type="submit" name="submit" value="Submit">
 		</form>

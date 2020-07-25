@@ -93,6 +93,7 @@ app.get('/title/:movie_title/comments/new', restrict, function(req, res){
 app.post('/title/:movie_title/comments', restrict, function(req, res){
 	let movie = req.params.movie_title;
 	let review = {user:req.session.user, review:req.body.review, movie_title:movie}
+	console.log(req.body.review);
 	connection.query("INSERT INTO reviews SET ?", review, function(error, result){
 		if(error){
 			console.log("comments post route SQL error "+error);
