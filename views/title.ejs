@@ -36,6 +36,11 @@
 					<%=parseId.Title%>
 				</div>
 				
+				<div class="plot">
+					<p class="plot_heaeding">Storyline</p>
+					<p class="storyline"><%=parseId.Plot%></p>
+				</div>
+
 				<div class="audience_ratings">
 
 					<div class="imdb">
@@ -60,17 +65,13 @@
 					</div>
 				</div>
 
-				<div class="plot">
-					<p>Plot</p>
-					<p><p class="plot"><%=parseId.Plot%></p></p>
-					</div>
 			</div>
 		</div>
 
 		<!-- Frame_2 -->
 		<div class="frame_2">
 			<div class="heading_BG">
-				<p class="heading">More Info</p>
+				<h3 class="heading">More Info</h3>
 			</div>
 
 			<div class="more_info"> 
@@ -123,15 +124,17 @@
 		<!-- Comments section -->
 		<div class="reviews">
 			<div class="heading_comment_button">
-				<p>Reviews</p>
+				<h3 class="heading">Reviews</h3>
 				<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/comments/new">Add Review</a></button>
 			</div>
 
 			<div class="user_review">
 				<% for(var i=0; i < reviews.length; i++){%>
-				<h3><%=reviews[i].user%></h3>
-				<p><%=reviews[i].review%></p>
-				<hr>
+				<div class="review_window">
+					<h4><%=reviews[i].user%></h4>
+					<p><%=reviews[i].review%></p>
+				</div>
+				<!-- <hr> -->
 				<%}%>
 			</div>
 		</div>
