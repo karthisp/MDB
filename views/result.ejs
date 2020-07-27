@@ -2,37 +2,51 @@
 <html>
 <head>
 	<title>MDB</title>
-	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="stylesheets/results.css">
 	<script src="https://kit.fontawesome.com/86ef774720.js" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </head>
 <body>
-	<h2>Your results</h2>
-	<div class="flex-container">
-		<% for(var i = 0; i < parseId["Search"].length; i++){ %>
-			<% if(parseId.Search[i].Poster !== "N/A" && parseId.Search[i].Type !== "game") { %>
-				<div class = "child-flex">	
-					<p><a href="/title/<%= parseId.Search[i].Title.split(' ').join('_')%>"><%= parseId.Search[i].Title %></a></p>
-					<img src="<%= parseId.Search[i].Poster %>">
-					<ul>
-						<li>In Theaters: <%= parseId.Search[i].Year %></li>
-						<li>Type: <%= parseId.Search[i].Type %></li>
-					</ul>
-				</div>			
-				
+	<header class="navbar">
+		<div class="logo">
+			<a href="/"><i class="fas fa-ticket-alt"></i> MDB</a>
+		</div>
+
+		<nav>
+			<ul>
+				<%if(user){%>
+				<li><i class="fas fa-sign-out-alt"></i> <a href="/logout"> Logout </a></li>
+				<%} else {%>
+				<li><i class="fas fa-sign-in-alt"></i> <a href="/login"> Login </a></li>
+				<li><i class="fas fa-user-plus"></i> <a href="/sign_up"> SignUp</a></li>
+				<%}%>
+			</ul>
+		</nav>
+	</header>
+	<div class="container">
+		<h2>Your results for <%=searchName%></h2>
+		<div class="flex-container">
+			<% for(var i = 0; i < parseId["Search"].length; i++){ %>
+				<% if(parseId.Search[i].Poster !== "N/A" && parseId.Search[i].Type !== "game") { %>
+						<div class="poster-title"> 
+							<div class="poster">
+								<img src="<%= parseId.Search[i].Poster %>">
+							</div>
+							<p><a href="/title/<%= parseId.Search[i].Title.split(' ').join('_')%>"><%= parseId.Search[i].Title %></a></p>	
+						</div>	
+				<% } %>
 			<% } %>
-		<% } %>
-	</div>
-	<script type="text/javascript" src="extract.js"></script>		
-	<button><a href="/"><i class="fas fa-chevron-circle-left"></i> Back</a></button>
+		</div>
+		<script type="text/javascript" src="extract.js"></script>		
+		<button><a href="/"><i class="fas fa-chevron-circle-left"></i> Back</a></button>
 
-	<hr>
+		<hr>
 
-	<div id="contact">
-		<a href="mailto:karthik.srinivasprasad@gmail.com" target="_blank"><ion-icon name="mail"></ion-icon></a>
-		<a href="https://www.linkedin.com/in/karthik-s-p-931345122/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
-		<a href="https://github.com/karthisp" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
+		<div id="contact">
+			<a href="mailto:karthik.srinivasprasad@gmail.com" target="_blank"><ion-icon name="mail"></ion-icon></a>
+			<a href="https://www.linkedin.com/in/karthik-s-p-931345122/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
+			<a href="https://github.com/karthisp" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
+		</div>
 	</div>
 </body>
 </html>

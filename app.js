@@ -43,12 +43,14 @@ app.get('/', function(req, res){
 	res.render("home");
 });
 
-app.get('/result', function(req, res){
+app.get('/result/', function(req, res){
 	let searchName =  req.query.search;
+	let user = req.session.user;
 	request('http://www.omdbapi.com/?apikey=thewdb&s='+searchName, function(error, response, body){
 		if(!error && response.statusCode == 200){
 			let parseId = JSON.parse(body)
-			res.render("result", {parseId: parseId});
+			req.session.path = 'result?search='+searchName.split(" ").join("+");
+			res.render("result", {parseId: parseId, user:user, searchName:searchName});
 		} else {
 			console.log(error);
 		}
@@ -157,11 +159,12 @@ app.post('/login', loginSignupPageRestrict, function(req, res){
 logout
 ***************/
 app.get('/logout', function(req, res, next){
+	let lastVisit = req.session.path;
 	req.session.destroy(function(error){
 		if(error){
 			console.log(error);
 		} else{
-			res.redirect("/");
+			res.redirect(lastVisit);
 		}
 	})
 })
@@ -178,7 +181,6 @@ function restrict(req, res, next){
 	if(req.session.user){
 		next();
 	} else{
-		console.log("m not allowing");
 		res.redirect('/login');
 	}
 }
