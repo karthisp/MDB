@@ -4,14 +4,21 @@
 	<title>Homepage</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/home.css">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
-	<script src="https://kit.fontawesome.com/86ef774720.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<form action="/result" method="GET">
-		<input type="text" name="search" placeholder="Your favourite film?" required>
-		<div>
-			<button><i class="fas fa-search"></i> Search</button>
-		</div>
-	</form>
+	<div class="container">
+		<form action="/result" method="GET">
+
+			<div class="moie-search">
+				<input type="text" name="search" placeholder="Your favourite film?" class="movie-name" required>
+				<button>Search</button>
+			</div>
+
+<!-- 			<div class="submit">
+				<button>Search</button>
+			</div> -->
+
+		</form>
+	</div>
 </body>
 </html>
