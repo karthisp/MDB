@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Homepage</title>
+	<meta charset="utf-8">
+	<title>MDB</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/home.css">
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
-</head>
+	<script src="https://kit.fontawesome.com/86ef774720.js" crossorigin="anonymous"></script>
 <body>
+	<header>
+		<div class="logo">
+			<a href="/"><i class="fas fa-ticket-alt"></i> MDB</a>
+		</div>
+
+		<nav>
+			<%if(user){%>
+			<button><a href="/logout">Log Out</a></button>
+			<%} else {%>
+			<button><a href="/login">Login</a></button>
+			<%}%>
+		</nav>		
+	</header>
+
 	<div class="container">
-		<form action="/result" method="GET">
-
-			<div class="moie-search">
-				<input type="text" name="search" placeholder="Your favourite film?" class="movie-name" required>
+		<div class="main-container">
+			<h1>One Place Is All You Need</h1>	
+			<form action="/result" method="GET">
+				<input type="text" name="search" placeholder="Your favourite film?" required>
 				<button>Search</button>
-			</div>
-
-<!-- 			<div class="submit">
-				<button>Search</button>
-			</div> -->
-
-		</form>
+			</form>			
+		</div>
 	</div>
 </body>
 </html>

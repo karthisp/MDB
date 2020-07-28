@@ -4,6 +4,7 @@ const request = require("request");
 const bodyParser = require("body-parser");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const methodOverride = require("method-override");
 
 const app = express();
 
@@ -36,11 +37,16 @@ connection.connect(function(error){
 });
 
 
+/*Method override*/
+app.use(methodOverride('_method'))
+
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
-	res.render("home");
+	let user = req.session.user;
+	req.session.path = '/';
+	res.render("home",{user:user});
 });
 
 app.get('/result/', function(req, res){
@@ -168,6 +174,26 @@ app.get('/logout', function(req, res, next){
 		}
 	})
 })
+
+/********************
+	Delete route
+*********************/
+app.delete('/:movie/delete', function(req, res){
+	let film = req.params.movie;
+	connection.query("SELECT user FROM reviews where movie_title=?", film, function(error, result){
+			for(let i=0; i<result.length; i++){
+				if(result[i].user === req.session.user){
+					let user = req.session.user
+					connection.query("DELETE FROM reviews WHERE user=?", user, function(err, res){
+						if(err){
+							console.log("Review Delet error "+err);
+						}
+					})
+				}
+			}
+	});
+});
+
 
 
 app.listen(3000, function(){

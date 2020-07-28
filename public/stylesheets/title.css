@@ -145,17 +145,6 @@ nav ul li{
 	}	
 }
 
-/*@media (hover: none) and (pointer: coarse) {
-	.audience_ratings{
-		background-color: white;
-		position:absolute;
-		width:100%;
-		top:600px;
-		left:0px;
-		z-index:-1
-	}	
-}
-*/
 .logo img{
 	max-width:200px;
 	width:100%;
