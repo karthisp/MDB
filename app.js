@@ -106,6 +106,25 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 		res.redirect('/title/'+movie);
 });
 
+/***********************
+	edit routes
+************************/
+app.get('/title/:movie/comments/edit', restrict, function(req, res){
+	let film = req.params.movie
+	res.render('reviews/edit', {film:film});
+});
+
+app.put('/title/:movie/comments', restrict, function(req, res){
+	let film = req.params.movie;
+	let user = req.session.user;
+	connection.query('UPDATE reviews SET WHERE review WHERE user=?', user, function(error, result){
+		if(error){
+			console.log(error)
+		}
+		res.redirect('title/'+film);
+	})
+});
+
 /*********************
 	signup get and post
 **********************/
@@ -137,7 +156,7 @@ app.post('/sign_up', loginSignupPageRestrict, function(req, res){
 });
 
 /*************************
-Login get and set
+		Login get and set
 **************************/
 app.get('/login', loginSignupPageRestrict, function(req, res){
 	res.render("auth/login");

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Review: <%=film.split('_').join(' ')%></title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/reviews/reviews.css">
+</head>
+<body>
+	<div class="container">
+		<h1>What would you like to change about review for <%=film.split('_').join(' ')%></h1>
+		<form action="/title/<%=film%>/comments?_method=PUT" method="POST" class="form">
+			<div class="review">
+				<textarea name="review" required></textarea>
+			</div>
+			<input type="submit" name="submit" value="Submit">
+		</form>
+	</div>
+</body>
+</html>
