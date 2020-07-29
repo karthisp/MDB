@@ -109,20 +109,28 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 /***********************
 	edit routes
 ************************/
-app.get('/title/:movie/comments/edit', restrict, function(req, res){
+app.get('/title/:movie/edit', restrict, function(req, res){
 	let film = req.params.movie
 	res.render('reviews/edit', {film:film});
 });
 
-app.put('/title/:movie/comments', restrict, function(req, res){
+app.put('/title/:movie', restrict, function(req, res){
 	let film = req.params.movie;
 	let user = req.session.user;
-	connection.query('UPDATE reviews SET WHERE review WHERE user=?', user, function(error, result){
-		if(error){
-			console.log(error)
-		}
-		res.redirect('title/'+film);
-	})
+		connection.query('SELECT * FROM reviews WHERE movie_title=?', film, function(err, result){
+			if(err){
+				console.log(err);
+			} else{
+				let existingResult = result;
+				connection.query("UPDATE reviews SET review=? WHERE review=?", [req.body.editReview, existingResult[0].review], function(error, updateResult){
+					if(error){
+						console.log(error)
+					} else{
+							res.redirect('/title/'+film);
+					}
+				})
+			}
+		});
 });
 
 /*********************
