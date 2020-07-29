@@ -133,14 +133,15 @@
 				<div class="review_window">
 					<h4><%=reviews[i].user%></h4>
 					<p><%=reviews[i].review%></p>
+					<% if(user === reviews[i].user){ %>
 					<hr>
 					<div class="edit_delete">
 						<form action="/<%=parseId.Title.split(' ').join('_')%>/delete?_method=DELETE" method="POST">
 							<button>Delete</button>
 						</form>
 					</div>
+					<% } %>
 				</div>
-				<!-- <hr> -->
 				<%}%>
 			</div>
 		</div>

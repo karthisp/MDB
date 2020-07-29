@@ -20,7 +20,6 @@ app.use(session({
 /*==========================
  	Mysql Connection
 ==========================*/
-
 const connection = mysql.createConnection({
 	host : "localhost",
 	user : "newuser",
@@ -32,10 +31,9 @@ connection.connect(function(error){
 	if(error){
 		console.log(error.stack);
 	} else{
-		console.log(`Connection successfull`);
+		console.log(`DB Connection successfull`);
 	}
 });
-
 
 /*Method override*/
 app.use(methodOverride('_method'))
@@ -90,7 +88,6 @@ app.get('/title/:movie_title', function(req, res){
 /********************
 	comments section
 *********************/
-
 app.get('/title/:movie_title/comments/new', restrict, function(req, res){
 	let user = req.session.user;
 	let film = req.params.movie_title;
@@ -101,7 +98,6 @@ app.get('/title/:movie_title/comments/new', restrict, function(req, res){
 app.post('/title/:movie_title/comments', restrict, function(req, res){
 	let movie = req.params.movie_title;
 	let review = {user:req.session.user, review:req.body.review, movie_title:movie}
-	console.log(req.body.review);
 	connection.query("INSERT INTO reviews SET ?", review, function(error, result){
 		if(error){
 			console.log("comments post route SQL error "+error);
@@ -113,7 +109,6 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 /*********************
 	signup get and post
 **********************/
-
 app.get('/sign_up', loginSignupPageRestrict, function(req, res){
 	res.render('auth/sign_up');
 });
@@ -162,7 +157,7 @@ app.post('/login', loginSignupPageRestrict, function(req, res){
 });
 
 /**************
-logout
+		logout
 ***************/
 app.get('/logout', function(req, res, next){
 	let lastVisit = req.session.path;
@@ -191,10 +186,9 @@ app.delete('/:movie/delete', function(req, res){
 					})
 				}
 			}
+			res.redirect('/title/'+film);
 	});
 });
-
-
 
 app.listen(3000, function(){
 	console.log("M ready");
