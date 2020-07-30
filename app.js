@@ -1,12 +1,15 @@
 const mysql = require("mysql"); 
+const bcrypt = require('bcrypt');
 const express = require("express");
 const request = require("request");
+const flash = require('connect-flash');
 const bodyParser = require("body-parser");
-const bcrypt = require('bcrypt');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const methodOverride = require("method-override");
 
 const app = express();
+app.use(cookieParser())
 
 app.use(bodyParser.urlencoded({ extended: false }));
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -36,8 +39,21 @@ connection.connect(function(error){
 });
 
 /*Method override*/
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 
+/*****************************
+			Flash configuration
+********************************/
+app.configure(function() {
+  app.use(express.cookieParser('keyboard cat'));
+  app.use(express.session({ cookie: { maxAge: 60000 }}));
+  app.use(flash());
+});
+
+
+/*****************************
+					Routes
+******************************/
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
