@@ -2,14 +2,11 @@ const mysql = require("mysql");
 const bcrypt = require('bcrypt');
 const express = require("express");
 const request = require("request");
-const flash = require('connect-flash');
 const bodyParser = require("body-parser");
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
 const methodOverride = require("method-override");
 
 const app = express();
-app.use(cookieParser())
 
 app.use(bodyParser.urlencoded({ extended: false }));
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -40,16 +37,6 @@ connection.connect(function(error){
 
 /*Method override*/
 app.use(methodOverride('_method'));
-
-/*****************************
-			Flash configuration
-********************************/
-app.configure(function() {
-  app.use(express.cookieParser('keyboard cat'));
-  app.use(express.session({ cookie: { maxAge: 60000 }}));
-  app.use(flash());
-});
-
 
 /*****************************
 					Routes
@@ -125,20 +112,21 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 /***********************
 	edit routes
 ************************/
-app.get('/title/:movie/edit', restrict, function(req, res){
+app.get('/title/:movie/edit/:user', restrict, function(req, res){
 	let film = req.params.movie
-	res.render('reviews/edit', {film:film});
+	let user = req.params.user
+	res.render('reviews/edit', {film:film, user, user});
 });
 
-app.put('/title/:movie', restrict, function(req, res){
+app.put('/title/:movie/:user', restrict, function(req, res){
 	let film = req.params.movie;
-	let user = req.session.user;
-		connection.query('SELECT * FROM reviews WHERE movie_title=?', film, function(err, result){
+	let user = req.params.user;
+		connection.query('SELECT * FROM reviews WHERE user=?', user, function(err, result){
 			if(err){
 				console.log(err);
+				res.redirect('/title/'+film);
 			} else{
-				let existingResult = result;
-				connection.query("UPDATE reviews SET review=? WHERE review=?", [req.body.editReview, existingResult[0].review], function(error, updateResult){
+				connection.query("UPDATE reviews SET review=? WHERE user=?", [req.body.editReview, user], function(error, updateResult){
 					if(error){
 						console.log(error)
 					} else{

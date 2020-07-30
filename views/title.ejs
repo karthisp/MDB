@@ -38,7 +38,7 @@
 				
 				<div class="plot">
 					<p class="plot_heaeding">Storyline</p>
-					<p class="storyline"><%=parseId.Plot%></p>
+					<p class="storyline"><%=parseId.Plot%></p>	
 				</div>
 
 				<div class="audience_ratings">
@@ -136,7 +136,7 @@
 					<% if(user === reviews[i].user){ %>
 					<hr>
 					<div class="edit_delete">
-					<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/edit">Edit</a></button>
+					<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/edit/<%=reviews[i].user%>">Edit</a></button>
 						<form action="/<%=parseId.Title.split(' ').join('_')%>/delete?_method=DELETE" method="POST">
 							<button>Delete</button>
 						</form>

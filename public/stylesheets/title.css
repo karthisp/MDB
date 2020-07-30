@@ -306,7 +306,7 @@ nav ul li{
 .heading_comment_button button{
 	border:none;
 	height:27px;
-	background:#a10018;
+	background:#1c8c24;
 }
 
 .heading_comment_button button a{
@@ -363,6 +363,9 @@ nav ul li{
 	height:40px;
 	padding:5px;
 	margin:0px 10px;
+	background-color: #f2ef30;
+	border-radius: 10px;
+	height:30px;
 }
 
 .edit_delete form{
@@ -373,4 +376,6 @@ nav ul li{
 .edit_delete form button{
 	max-width:90px;
 	width:100%;
+	background-color: rgb(90, 0, 0);
+	color:white;
 }
