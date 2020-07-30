@@ -94,7 +94,13 @@ app.get('/title/:movie_title', function(req, res){
 app.get('/title/:movie_title/comments/new', restrict, function(req, res){
 	let user = req.session.user;
 	let film = req.params.movie_title;
-	res.render('reviews/new', {film:film, user:user});
+		connection.query('SELECT user, movie_title FROM reviews WHERE user=? AND movie_title=?', [user, film], function(error, result){
+			if(result.length > 0 && result[0].user && result[0].movie_title){
+				res.redirect('/title/'+film);
+			} else{
+				res.render('reviews/new', {film:film, user:user});
+			}
+		});
 });
 
 
@@ -114,8 +120,15 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 ************************/
 app.get('/title/:movie/edit/:user', restrict, function(req, res){
 	let film = req.params.movie
-	let user = req.params.user
-	res.render('reviews/edit', {film:film, user, user});
+	let user = req.params.user;
+		connection.query('SELECT * FROM reviews WHERE user=?', [user, film], function(error, result){
+			if(error){
+				console.log("undate review route "+error);
+			} else{
+					let existingReview = result[0].review
+					res.render('reviews/edit', {film:film, user, user, existingReview:existingReview});
+			}
+		})
 });
 
 app.put('/title/:movie/:user', restrict, function(req, res){
