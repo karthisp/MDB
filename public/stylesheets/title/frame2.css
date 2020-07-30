@@ -1,0 +1,48 @@
+.frame_2{
+	background-color:white;
+}
+
+@media screen and (max-width:480px){
+	.frame_2{
+		margin-top:300px;
+	}	
+}
+
+.heading_BG{
+	background:linear-gradient(90deg, #2980B9, #6DD5FA);
+	padding-left:20px;
+}
+
+.heading_BG .heading{
+	background-color:white;
+	max-width:100px;
+	text-align: center;
+}
+
+.more_info{
+	padding: 5px 20px 20px 20px;
+}
+
+.more_info .other_info{
+	display:flex;
+	align-items: center;
+}
+
+.more_info .other_info .catagory{
+	max-width:150px;
+	width: 100%;
+	word-wrap:break-word;
+	font-weight: 600;
+}
+
+.other_info p{
+	margin-top:0;
+	margin-bottom:0px;
+	font-size:14px;
+	word-wrap:break-word;
+}
+
+.more_info .result{
+	padding-left:15px;
+	word-wrap:break-word;
+}
