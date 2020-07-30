@@ -336,6 +336,41 @@ nav ul li{
 
 .review_window{
 	background: white;
+	border: 1px solid black;
 	border-radius: 10px;
 	box-shadow: 20px 2px 10px 1px rgba(36, 59, 85, 0.6);
+}
+
+.review_window h4{
+	padding-left:10px;
+}
+
+.review_window p{
+	padding-left:10px;
+}
+
+.edit_delete{
+	display:flex;
+	justify-content: flex-end;
+	margin-right:15px;
+}
+
+.edit_delete button{
+	border: none;
+	max-width:90px;
+	width:100%;
+	height:auto;
+	height:40px;
+	padding:5px;
+	margin:0px 10px;
+}
+
+.edit_delete form{
+	max-width:90px;
+	width:100%;
+}
+
+.edit_delete form button{
+	max-width:90px;
+	width:100%;
 }

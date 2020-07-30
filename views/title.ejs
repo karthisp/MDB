@@ -135,8 +135,8 @@
 					<p><%=reviews[i].review%></p>
 					<% if(user === reviews[i].user){ %>
 					<hr>
-					<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/edit">Edit</a></button>
 					<div class="edit_delete">
+					<button><a href="/title/<%=parseId.Title.split(' ').join('_')%>/edit">Edit</a></button>
 						<form action="/<%=parseId.Title.split(' ').join('_')%>/delete?_method=DELETE" method="POST">
 							<button>Delete</button>
 						</form>
