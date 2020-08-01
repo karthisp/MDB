@@ -56,7 +56,7 @@ app.get('/result/', function(req, res){
 	request('http://www.omdbapi.com/?apikey=thewdb&s='+searchName, function(error, response, body){
 		if(!error && response.statusCode == 200){
 			let parseId = JSON.parse(body)
-			req.session.path = 'result?search='+searchName.split(" ").join("+");
+			req.session.path = 'result?search='+searchName.split(" ").join("+");	
 			res.render("result", {parseId: parseId, user:user, searchName:searchName});
 		} else {
 			console.log(error);
