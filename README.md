@@ -5,6 +5,7 @@ A movies database site where a user can review his/her favourite movies.
 - Can handle CRUD operations
 - User authentication required for adding reviews
 - A user can have only one review per movie under his/her name
+- Responsive web app
 
 ## Design inspiration
 Netflix, Rotten Tomatoes and IMDB
