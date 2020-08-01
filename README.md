@@ -1,9 +1,6 @@
 # MDB
 A movies database site where a user can review his/her favourite movies.
 
-## Purpose
-I made this small project to showcase my skills.
-
 ## Design inspiration
 Netflix, Rotten Tomatoes and IMDB
 
