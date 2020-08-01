@@ -8,7 +8,7 @@ Netflix, Rotten Tomatoes and IMDB
 - **Forntend**: HTML, CSS, JS
 - **Server Side**: Node.js, Express
 - **Database**: mysql
-- **S**: Ubuntu
+- **OS**: Ubuntu
 
 ## Screenshots
 ![](./images/homepage.jpg)
