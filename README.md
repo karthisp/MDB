@@ -24,3 +24,6 @@ Netflix, Rotten Tomatoes and IMDB
 
 ### Features to be added
 - Flash messages
+
+### Potential bugs
+Might come accross errors when searched for bollywood movies.
