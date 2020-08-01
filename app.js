@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const session = require('express-session');
 const methodOverride = require("method-override");
 const omdbApi = require('./api');
-const connection = require('./db')
+const connection = require('./db');
+const access = require('./restrictions');
 
 const app = express();
 
@@ -17,23 +18,7 @@ app.use(session({
 	 saveUninitialized: true
 }));
 
-/*==========================
- 	Mysql Connection
-==========================*/
-// const connection = mysql.createConnection({
-// 	host : "localhost",
-// 	user : "newuser",
-// 	password : "K@rthik96",
-// 	database : "Movies_DB"
-// });
 
-// connection.connect(function(error){
-// 	if(error){
-// 		console.log(error.stack);
-// 	} else{
-// 		console.log(`DB Connection successfull`);
-// 	}
-// });
 
 /*Method override*/
 app.use(methodOverride('_method'));
@@ -91,7 +76,7 @@ app.get('/title/:movie_title', function(req, res){
 /********************
 	comments section
 *********************/
-app.get('/title/:movie_title/comments/new', restrict, function(req, res){
+app.get('/title/:movie_title/comments/new', access.restrict, function(req, res){
 	let user = req.session.user;
 	let film = req.params.movie_title;
 		connection.query('SELECT user, movie_title FROM reviews WHERE user=? AND movie_title=?', [user, film], function(error, result){
@@ -104,7 +89,7 @@ app.get('/title/:movie_title/comments/new', restrict, function(req, res){
 });
 
 
-app.post('/title/:movie_title/comments', restrict, function(req, res){
+app.post('/title/:movie_title/comments', access.restrict, function(req, res){
 	let movie = req.params.movie_title;
 	let review = {user:req.session.user, review:req.body.review, movie_title:movie}
 	connection.query("INSERT INTO reviews SET ?", review, function(error, result){
@@ -118,7 +103,7 @@ app.post('/title/:movie_title/comments', restrict, function(req, res){
 /***********************
 	edit routes
 ************************/
-app.get('/title/:movie/edit/:user', restrict, function(req, res){
+app.get('/title/:movie/edit/:user', access.restrict, function(req, res){
 	let film = req.params.movie
 	let user = req.params.user;
 		connection.query('SELECT * FROM reviews WHERE user=?', [user, film], function(error, result){
@@ -131,7 +116,7 @@ app.get('/title/:movie/edit/:user', restrict, function(req, res){
 		})
 });
 
-app.put('/title/:movie/:user', restrict, function(req, res){
+app.put('/title/:movie/:user', access.restrict, function(req, res){
 	let film = req.params.movie;
 	let user = req.params.user;
 		connection.query('SELECT * FROM reviews WHERE user=?', user, function(err, result){
@@ -153,11 +138,11 @@ app.put('/title/:movie/:user', restrict, function(req, res){
 /*********************
 	signup get and post
 **********************/
-app.get('/sign_up', loginSignupPageRestrict, function(req, res){
+app.get('/sign_up', access.loginSignupPageRestrict, function(req, res){
 	res.render('auth/sign_up');
 });
 
-app.post('/sign_up', loginSignupPageRestrict, function(req, res){
+app.post('/sign_up', access.loginSignupPageRestrict, function(req, res){
 
 	connection.query('SELECT username FROM users WHERE username=?', req.body.username, function(error, result){
 		if(result.length > 0 && result[0].username === req.body.username){
@@ -183,11 +168,11 @@ app.post('/sign_up', loginSignupPageRestrict, function(req, res){
 /*************************
 		Login get and set
 **************************/
-app.get('/login', loginSignupPageRestrict, function(req, res){
+app.get('/login', access.loginSignupPageRestrict, function(req, res){
 	res.render("auth/login");
 })
 
-app.post('/login', loginSignupPageRestrict, function(req, res){
+app.post('/login', access.loginSignupPageRestrict, function(req, res){
 	connection.query("SELECT * FROM users WHERE username=?", req.body.username, function(error, result){
 		if(error){
 			console.log("login sql error "+error);
@@ -236,23 +221,4 @@ app.delete('/:movie/delete', function(req, res){
 
 app.listen(3000, function(){
 	console.log("M ready");
-});
-
-/*****************
-access restriction
-******************/
-function restrict(req, res, next){
-	if(req.session.user){
-		next();
-	} else{
-		res.redirect('/login');
-	}
-}
-
-function loginSignupPageRestrict(req, res, next){
-	if(!req.session.user){
-		next();
-	} else{
-		res.redirect('/')
-	}
-}
+})
