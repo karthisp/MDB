@@ -11,7 +11,7 @@ connection.connect(function(error){
 	if(error){
 		console.log(error.stack);
 	} else{
-		console.log(`DB Connection successfull`);
+		console.log(`Connected to DB successfully`);
 	}
 });
 
