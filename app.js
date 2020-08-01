@@ -10,7 +10,6 @@ const omdbApi = require('./api');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(session({
 	secret:"keep_calm",
