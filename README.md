@@ -5,10 +5,10 @@ A movies database site where a user can review his/her favourite movies.
 Netflix, Rotten Tomatoes and IMDB
 
 ## Tools Used
-- Forntend: HTML, CSS, JS
-- Server Side: Node.js, Express
-- Database: mysql
-- OS: Ubuntu
+- **Forntend**: HTML, CSS, JS
+- **Server Side**: Node.js, Express
+- **Database**: mysql
+- **S**: Ubuntu
 
 ## Screenshots
 ![](./images/homepage.jpg)
