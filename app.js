@@ -1,4 +1,3 @@
-const mysql = require("mysql"); 
 const bcrypt = require('bcrypt');
 const express = require("express");
 const request = require("request");
@@ -6,6 +5,7 @@ const bodyParser = require("body-parser");
 const session = require('express-session');
 const methodOverride = require("method-override");
 const omdbApi = require('./api');
+const connection = require('./db')
 
 const app = express();
 
@@ -20,20 +20,20 @@ app.use(session({
 /*==========================
  	Mysql Connection
 ==========================*/
-const connection = mysql.createConnection({
-	host : "localhost",
-	user : "newuser",
-	password : "K@rthik96",
-	database : "Movies_DB"
-});
+// const connection = mysql.createConnection({
+// 	host : "localhost",
+// 	user : "newuser",
+// 	password : "K@rthik96",
+// 	database : "Movies_DB"
+// });
 
-connection.connect(function(error){
-	if(error){
-		console.log(error.stack);
-	} else{
-		console.log(`DB Connection successfull`);
-	}
-});
+// connection.connect(function(error){
+// 	if(error){
+// 		console.log(error.stack);
+// 	} else{
+// 		console.log(`DB Connection successfull`);
+// 	}
+// });
 
 /*Method override*/
 app.use(methodOverride('_method'));
