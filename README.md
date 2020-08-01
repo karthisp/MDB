@@ -15,6 +15,7 @@ Netflix, Rotten Tomatoes and IMDB
 - **Server Side**: Node.js, Express
 - **Database**: mysql
 - **OS**: Ubuntu
+- **Version control**: git
 
 ## Screenshots
 ![](./images/homepage.jpg)
