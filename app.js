@@ -5,6 +5,7 @@ const request = require("request");
 const bodyParser = require("body-parser");
 const session = require('express-session');
 const methodOverride = require("method-override");
+const omdbApi = require('./api');
 
 const app = express();
 
@@ -53,7 +54,7 @@ app.get('/', function(req, res){
 app.get('/result/', function(req, res){
 	let searchName =  req.query.search;
 	let user = req.session.user;
-	request('http://www.omdbapi.com/?apikey=thewdb&s='+searchName, function(error, response, body){
+	request(omdbApi.search()+searchName, function(error, response, body){
 		if(!error && response.statusCode == 200){
 			let parseId = JSON.parse(body)
 			req.session.path = 'result?search='+searchName.split(" ").join("+");	
@@ -68,7 +69,7 @@ app.get('/title/:movie_title', function(req, res){
 	let film = req.params.movie_title;
 	let user = req.session.user;
 	req.session.path = '/title/'+film;
-	request('http://www.omdbapi.com/?apikey=thewdb&t='+film, function(error, response, body){
+	request(omdbApi.title()+film, function(error, response, body){
 		if(!error && response.statusCode == 200){
 			let parseId = JSON.parse(body);
 			connection.query("SELECT * FROM reviews WHERE movie_title=?", film, function(error, result){
