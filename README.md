@@ -21,10 +21,3 @@ Netflix, Rotten Tomatoes and IMDB
 ![](./images/homepage.jpg)
 ![](./images/results_page.png)
 ![](./images/title.png)
-
-
-### Features to be added
-- Flash messages
-
-### Potential bugs
-Might come accross errors when searched for bollywood movies.
