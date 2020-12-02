@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
 	secret:"keep_calm",
 	resave: false,
-	 saveUninitialized: true
+	saveUninitialized: true
 }));
 
 
@@ -21,6 +21,7 @@ app.use(methodOverride('_method'));
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(express.static('public/scripts'))
 
 app.use(main);
 app.use(comments);
