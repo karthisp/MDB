@@ -2,6 +2,8 @@
 
 *{
 	box-sizing: border-box;
+	margin:0px;
+	padding:0px;
 }
 
 html{
@@ -30,9 +32,21 @@ body{
 	margin: 0 auto;
 }
 
+a{
+	color:white;
+	text-decoration: none;
+}
+
 h1{
 	color:white;
 	font-size: 25px;
+}
+
+.signin-section{
+	background-color: rgba(0, 0, 0, 1);
+	max-width: 500px;
+	width:100%;
+	padding:1em;	
 }
 
 .form{
@@ -41,9 +55,6 @@ h1{
 	justify-content: space-around;
 	max-width: 500px;
 	width:100%;
-	padding:10px 10px 5px 10px;
-	background-color: rgba(0, 0, 0, 1);
-	border: 5px solid black;
 	text-align: center;
 	border-radius: 10px;
 
@@ -63,4 +74,16 @@ button{
 	border:none;
 	width:100%;
 	color:white;
+}
+
+.other-options{
+	color:white;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top:10px;
+}
+
+.other-options li{
+	list-style: none;
 }

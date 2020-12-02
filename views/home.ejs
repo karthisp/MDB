@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>MDB</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/home.css">
-	<script src="https://kit.fontawesome.com/86ef774720.js" crossorigin="anonymous"></script>
-<body>
-	<header>
-		<div class="logo">
-			<a href="/"><i class="fas fa-ticket-alt"></i> MDB</a>
-		</div>
 
-		<nav>
-			<%if(user){%>
-			<button><a href="/logout">Log Out</a></button>
-			<%} else {%>
-			<button><a href="/login">Login</a></button>
-			<%}%>
-		</nav>		
-	</header>
+<body>
+	<nav>
+		<a href="/" class="logo"><i class="fas fa-ticket-alt"></i> MDB</a>
+
+		<%if(user){%>
+		<a href="/logout" class="log">Log Out</a>
+		<%} else {%>
+		<a href="/login" class="log">Login</a>
+		<%}%>
+	</nav>		
 
 	<div class="container">
-		<div class="main-container">
-			<h1>One Place Is All You Need</h1>	
-			<form action="/result" method="GET">
-				<input type="text" name="search" placeholder="Your favourite film?" required>
-				<button>Search</button>
-			</form>			
-		</div>
+		<form action="/result" method="GET" class="search">
+			<div class="movies-search">
+				<input class="search-movies" type="text" name="search" placeholder="Your favourite film?" autocomplete="off" required>
+				<ul class="search-autocomplete"></ul>
+			</div>
+			<button>Search</button>
+		</form>		
 	</div>
-
+	<script src="../scripts/autocomplete.js"></script>
+	<script src="https://kit.fontawesome.com/86ef774720.js" crossorigin="anonymous"></script>
 </body>
 </html>
-

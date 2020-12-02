@@ -2,18 +2,22 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Review: <%=film.split('_').join(' ')%></title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/reviews/reviews.css">
 </head>
 <body>
 	<div class="container">
-		<h1>What do you think about <%=film.split('_').join(' ')%></h1>
-		<form action="/title/<%=film%>/comments" method="POST" class="form">
-			<div class="review">
-				<textarea name="review" required></textarea>
-			</div>
-			<input type="submit" name="submit" value="Submit">
-		</form>
+		<h1><%=film.split('_').join(' ')%></h1>
+		<div class="review-section">  
+			<form action="/title/<%=film%>/comments" method="POST" class="form">
+				<div class="review">
+					<textarea name="review" required></textarea>
+				</div>
+				<input type="submit" name="submit" value="Submit">
+			</form>
+			<a href="/">Go back</a>
+		</div>
 	</div>
 	
 </body>

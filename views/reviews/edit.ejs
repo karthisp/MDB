@@ -2,18 +2,22 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Review: <%=film.split('_').join(' ')%></title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/reviews/reviews.css">
 </head>
 <body>
 	<div class="container">
-		<h1>What would you like to change about review for <%=film.split('_').join(' ')%></h1>
-		<form action="/title/<%=film%>/<%=user%>?_method=PUT" method="POST" class="form">
-			<div class="review">
-				<textarea name="editReview" required><%=existingReview%></textarea>
-			</div>
-			<input type="submit" name="submit" value="Submit">
-		</form>
+		<h1><%=film.split('_').join(' ')%></h1>
+		<div class="review-section">
+			<form action="/title/<%=film%>/<%=user%>?_method=PUT" method="POST" class="form">
+				<div class="review">
+					<textarea name="editReview" required><%=existingReview%></textarea>
+				</div>
+				<input type="submit" name="submit" value="Submit">
+			</form>
+			<a href="/">Go back</a>
+		</div>
 	</div>
 	
 </body>

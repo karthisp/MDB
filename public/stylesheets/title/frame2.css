@@ -1,16 +1,11 @@
 .frame_2{
+	margin-top:20px;
 	background-color:white;
-}
-
-@media screen and (max-width:480px){
-	.frame_2{
-		margin-top:300px;
-	}	
 }
 
 .heading_BG{
 	background:linear-gradient(90deg, #2980B9, #6DD5FA);
-	padding-left:20px;
+	padding-left:0px;
 }
 
 .heading_BG .heading{
@@ -20,11 +15,18 @@
 }
 
 .more_info{
-	padding: 5px 20px 20px 20px;
+	padding: 5px 20px 20px 10px;
+}
+
+@media screen and (max-width:480px){
+	.more_info{
+		padding: 10px 0px 10px 10px;
+	}
 }
 
 .more_info .other_info{
 	display:flex;
+	justify-content: flex-start;
 	align-items: center;
 }
 
@@ -40,9 +42,10 @@
 	margin-bottom:0px;
 	font-size:14px;
 	word-wrap:break-word;
+	vertical-align: middle;
 }
 
-.more_info .result{
-	padding-left:15px;
-	word-wrap:break-word;
+.result{
+	margin-left:15px;
+	max-width:300px;
 }
