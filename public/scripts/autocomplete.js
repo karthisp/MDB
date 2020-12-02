@@ -12,7 +12,7 @@ function displayAutocomplete() {
     autoComplete.innerHTML = ''
     autoComplete.style.width = '100%'
     autoComplete.style.background = '#ffffff'
-    let url = `https://www.omdbapi.com/?apikey=thewdb&s=${moviesSearch.value}`
+    let url = `https://www.omdbapi.com/?apikey=anyting&s=${moviesSearch.value}`
     fetch(url)
         .then(res => res.json())
         .then(data => {
